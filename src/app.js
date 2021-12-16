@@ -24,7 +24,7 @@ App = {
         // Request account access if needed
         await ethereum.enable()
         // Acccounts now exposed
-        web3.eth.sendTransaction({/* ... */})
+        web3.eth.sendTransaction({/* ... */ })
       } catch (error) {
         // User denied account access...
       }
@@ -34,7 +34,7 @@ App = {
       App.web3Provider = web3.currentProvider
       window.web3 = new Web3(web3.currentProvider)
       // Acccounts always exposed
-      web3.eth.sendTransaction({/* ... */})
+      web3.eth.sendTransaction({/* ... */ })
     }
     // Non-dapp browsers...
     else {
@@ -45,11 +45,13 @@ App = {
   loadAccount: async () => {
     // Set the current blockchain account
     App.account = web3.eth.accounts[0]
+    //console.log(App.account)
   },
 
   loadContract: async () => {
     // Create a JavaScript version of the smart contract
     const todoList = await $.getJSON('TodoList.json')
+    //console.log(todoList)
     App.contracts.TodoList = TruffleContract(todoList)
     App.contracts.TodoList.setProvider(App.web3Provider)
 
@@ -93,9 +95,9 @@ App = {
       const $newTaskTemplate = $taskTemplate.clone()
       $newTaskTemplate.find('.content').html(taskContent)
       $newTaskTemplate.find('input')
-                      .prop('name', taskId)
-                      .prop('checked', taskCompleted)
-                      .on('click', App.toggleCompleted)
+        .prop('name', taskId)
+        .prop('checked', taskCompleted)
+        .on('click', App.toggleCompleted)
 
       // Put the task in the correct list
       if (taskCompleted) {
